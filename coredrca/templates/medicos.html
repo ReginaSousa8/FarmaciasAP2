@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block titulo %}Médicos{% endblock %}
+{% block conteudo %} 
+
+
+      <legend>Médicos</legend>
+
+        <div class="row">
+          <div class="col-md-2">
+            <a href="cadastro-medicos.html"><button type="button" class="btn btn-primary glyphicon glyphicon-plus-sign"> Novo </button></a>
+          </div></div>
+
+        <div class="row">
+          <div class="col-md-12">
+          <br>
+            <div class="panel panel-primary">
+              <!-- Default panel contents -->
+              <div class="panel-heading">Médicos Registados</div>
+
+              <!-- Table -->
+              <table class="table">
+                  <tr>
+                    <th>Nome</th>
+                    <th>Morada</th>
+                    <th>Telefone</th>
+                    <th>Especialidade</th>
+
+                    <th>Informações</th>
+                  </tr>
+                  {%for medico in medicos%}
+                  <tr>
+                    <td>{{medico.nome}}</td>
+                    <td>{{medico.morada}}</td>
+                    <td>{{medico.telefone}}</td>
+                    <td>{{medico.especialidade}}</td>
+                    <td ><a href="{% url 'infomed' nome=medico.nome %}" class="glyphicon glyphicon-list-alt"></a></td>
+                  </tr>
+                  {% endfor %}
+              </table>
+            </div>
+
+          </div>
+        </div>
+
+{% endblock %}

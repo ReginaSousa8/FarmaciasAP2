@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block titulo %}Medicamentos{% endblock %}
+
+{% block conteudo %} 
+
+
+      <legend>Medicamentos em Stock</legend>
+
+        <div class="row">
+          <div class="col-md-2">
+            <a href="cadastro-medicamentos.html"><button type="button" class="btn btn-primary glyphicon glyphicon-plus-sign"> Novo </button></a>
+
+
+            <a href="addStock.html"><button type="button" class="btn btn-primary glyphicon glyphicon-plus-sign"> Adicionar Stock </button></a>
+              </div></div>
+
+
+        <div class="row">
+          <div class="col-md-12">
+          <br>
+            <div class="panel panel-primary">
+              <!-- Default panel contents -->
+              <div class="panel-heading">Medicamentos</div>
+
+              <!-- Table -->
+              <table class="table">
+                  <tr><th>Nome</th>
+                    <th>Quantidade</th>
+                      <th>Farmácia</th>
+
+                  </tr>
+                  {%for medicamento in medicamentos%}
+                  <tr><td>{{medicamento.nome}}</td>
+                  <td><li>{{medicamento.quantidade}}</li></td>
+
+                      <td><li>{{medicamento.idFarmacia}}</li>
+                      </td></tr>
+                  {% endfor %}
+              </table></div>
+
+          <div class="panel panel-primary">
+              <!-- Default panel contents -->
+              <div class="panel-heading">Medicamentos em Alarme  (menos de 5 unidades em Stock)</div>
+
+              <!-- Table -->
+              <table class="table">
+                  <tr><th>Nome</th>
+                    <th>Quantidade</th>
+                      <th>Farmácia</th>
+
+                  </tr>
+
+                  {%for medicamento in medicamentos%}
+                  {% if medicamento.quantidade < 5 %}
+                  <tr><td>{{medicamento.nome}}</td>
+                  <td><li>{{medicamento.quantidade}}</li></td>
+                  <td>{{medicamento.idFarmacia}}</td> {% endif %}
+                      </tr>{% endfor %}
+              </table></div>
+
+          </div>
+        </div>
+
+{% endblock %}

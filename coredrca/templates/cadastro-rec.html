@@ -1,0 +1,70 @@
+
+{% load static from staticfiles%}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <div class="row">
+          <div class="col-md-2">
+            <a href="receitas"><button type="button" class="btn btn-primary glyphicon glyphicon-plus-sign"> Voltar </button></a>
+          </div>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block titulo %}Medicamentos{% endblock %}</title>
+
+    <!-- Bootstrap -->
+    <link href="{% static "lib/bootstrap/css/bootstrap.min.css" %}" rel="stylesheet">
+    <!-- Staff CSS-->
+     <link href="{% static "css/style.css" %}" rel="stylesheet" >
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="{% static "lib/jquery/jquery-1.11.2.js" %}"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="{% static "lib/bootstrap/js/bootstrap.min.js" %}"></script>
+
+  </head>
+
+   <body>
+  <div class="col-md-4">
+            <!-- /input-group -->
+          </div>
+        </div>
+
+    <div class="row">
+          <div class="col-md-12">
+          <br>
+            <div class="panel panel-primary">
+              <!-- Default panel contents -->
+              <div class="panel-heading">Medicamentos</div>
+
+                    <!-- Table -->
+              <table class="table">
+                  <tr >
+                    <th>Registo</th>
+                  </tr>
+                  {% block tabela %}
+                  <tr>
+                    <td><form method="post" class="post-form">{% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="save btn btn-default">Guardar</button>
+        </form></td>
+                  </tr>
+                  {% endblock %}
+              </table>
+
+                </div></div></div>
+
+   <!-- FOOTER -->
+      <footer class="footer navbar-static-bottom" >
+       <div class="staff-footer">
+            <div class="container">
+                <p class="staff-aling-rigth">Aplicações  Distribuídas<br>
+                    Gestão Farmácias e Receitas
+                </p>
+            </div>
+      </div>
+      </footer>
+  </body>
+</html>

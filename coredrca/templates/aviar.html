@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block titulo %}Aviar{% endblock %}
+{% block conteudo %}
+
+
+      <legend>Receitas para Aviar</legend>
+
+        <div class="row">
+          <div class="col-md-2">
+            <a href="cadastro-receitas.html"><button type="button" class="btn btn-primary glyphicon glyphicon-plus-sign"> Novo </button></a>
+</div></div>
+
+        <div class="row">
+          <div class="col-md-12">
+          <br>
+            <div class="panel panel-primary">
+
+
+                <!-- Default panel contents -->
+              <div class="panel-heading">Receitas para Aviar</div>
+
+              <!-- Table -->
+              <table class="table">
+                  <tr>
+                    <th>Farmácia</th>
+                    <th>Receita</th>
+                    <th>Aviar</th>
+                  </tr>
+
+                  {%for aviar in aviar%}
+                  <tr>
+                    <td>{{aviar.idFarmacia}}</td>
+                    <td>{{aviar.idReceita}}</td>
+                    <td ><a href="{% url 'deletereceita' pk=aviar.pk %}" class="glyphicon glyphicon-edit"></a></td>
+
+                  </tr>
+                  {% endfor %}
+              </table>
+            </div>
+
+
+          </div>
+        </div>
+
+
+
+{% endblock %}

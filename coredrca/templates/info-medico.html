@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+
+{% block conteudo %} 
+
+      <legend>Médico {{ medico.nome }}</legend>
+
+        <div class="row">
+          <div class="col-md-2">
+
+
+
+            <a href="{% url 'medico' %}"><button type="button" class="btn btn-primary glyphicon glyphicon-plus-sign"> Voltar </button></a>
+          </div>
+
+
+        <div class="row">
+          <div class="col-md-12">
+          <br>
+            <div class="panel panel-primary">
+              <!-- Default panel contents -->
+              <div class="panel-heading">Informações Gerais  do Médico</div>
+
+              <!-- Table -->
+              <table class="table">
+                  <tr>
+                    <th>Nome</th>
+                    <th>Morada</th>
+                    <th>Telefone</th>
+                    <th>Especialidade</th>
+                  </tr>
+
+
+                  <tr>
+                    <td>{{medico.nome}}</td>
+                    <td>{{medico.morada}}</td>
+                    <td>{{medico.telefone}}</td>
+                      <td>{{medico.especialidade}}</td>
+                    <td>
+
+                        {%for utente in utente.idMedico.values_list%}
+                        <li>{{utente|first}}</li>
+                    {% endfor %}</td>
+                  </tr>
+              </table>
+            </div>
+
+
+          </div>
+        </div>
+ <div class="row">
+          <div class="col-md-12">
+          <br>
+            <div class="panel panel-primary">
+              <!-- Default panel contents -->
+              <div class="panel-heading">Receitas Prescritas</div>
+
+
+              <!-- Table -->
+              <table class="table">
+                  <tr>
+                    <th>Identificação da Receita</th>
+                    <th>Mais Informações</th>
+                  </tr>
+
+                {%for receita in receita%}
+                  <tr>
+                    <td>{{receita.nome}}</td>
+                      <td>
+                         <a href="{% url 'receita' %}" class="glyphicon glyphicon-list-alt"></a>
+                      </td>
+                  </tr>
+                {% endfor %}
+              </table>
+            </div>
+          </div>
+        </div>
+
+<div class="row">
+          <div class="col-md-12">
+          <br>
+            <div class="panel panel-primary">
+              <!-- Default panel contents -->
+              <div class="panel-heading">Informações Estatísticas</div>
+
+
+
+              <!-- Table -->
+              <table class="table">
+                  <tr>
+                    <th>Número de Receitas do Médico</th>
+                  </tr>
+    {%for numRmedi in numRmedi%}
+                  <tr>
+                    <td>
+                        {{numRmedi|last}}
+                    </td>
+                  </tr>
+            {% endfor %}
+
+
+                  <tr>
+                    <th>Percentagem de Receitas do Médico(%)</th>
+                  </tr>
+
+                  <tr>
+                    <td>
+{{media}}
+                    </td>
+                  </tr>
+
+              </table>
+            </div>
+          </div>
+        </div>
+{% endblock %}

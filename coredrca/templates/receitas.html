@@ -1,0 +1,238 @@
+{% extends "base.html" %}
+{% block titulo %}Receitas{% endblock %}
+{% block conteudo %} 
+
+
+      <legend>Receitas</legend>
+
+        <div class="row">
+          <div class="col-md-2">
+            <a href="cadastro-receitas.html"><button type="button" class="btn btn-primary glyphicon glyphicon-plus-sign"> Novo </button></a>
+
+</div>
+        </div>
+
+
+        <div class="row">
+          <div class="col-md-12">
+          <br>
+            <div class="panel panel-primary">
+
+
+                <!-- Default panel contents -->
+              <div class="panel-heading">Receitas Registadas</div>
+
+              <!-- Table -->
+              <table class="table">
+                  <tr>
+                    <th>Nome</th>
+                    <th>Nome do Médico</th>
+                    <th>Adicionar Medicamento(s)</th>
+                    <th>Informações</th>
+                  </tr>
+
+                  {%for receita in receitas%}
+                  <tr>
+                    <td>{{receita.nome}}</td>
+                    <td>{{receita.idMedico}}</td>
+
+                    <td ><a href="cadastro-medrec.html" class="glyphicon glyphicon-edit"></a></td>
+
+                    <td ><a href="{% url 'inforec' nome=receita.nome %}"class="glyphicon glyphicon-list-alt"></a></td>
+
+                  </tr>
+                  {% endfor %}
+              </table>
+            </div>
+
+
+          </div>
+        </div>
+
+
+ <!-- Default panel contents -->
+
+
+<div class="row">
+          <div class="col-md-12">
+            <div class="panel panel-primary">
+              <!-- Default panel contents -->
+              <div class="panel-heading">Informações Estatísticas</div>
+
+              <!-- Table -->
+              <table class="table">
+
+                  <tr>
+                    <th>Número de Receitas Registadas:</th>
+                  </tr>
+    {%for numRec in numRec%}
+                  <tr>
+                    <td>
+                        {{numRec}}
+                    </td>
+                  </tr>
+            {% endfor %}
+
+
+                  <tr>
+                    <th>Número de Utentes com Receita(s):</th>
+                  </tr>
+    {%for numUte in numUte%}
+                  <tr>
+                    <td>
+                    {{numUte}}
+                    </td>
+                  </tr>
+            {% endfor %}
+
+                   <tr>
+                    <th>Número Médio de Receitas por Utente:</th>
+                  </tr>
+
+                  <tr>
+                    <td>
+                    {{MedRU}}
+                    </td>
+                  </tr>
+
+                <tr><th>Número Médio de Receitas por Médico:</th></tr>
+
+                  <tr><td>{{MedRM}}</td></tr>
+
+
+              </table>
+ </div>
+          </div> </div>
+
+
+
+<!--   Esta. UTentes  -->
+<div class="row">
+          <div class="col-md-12">
+
+            <div class="panel panel-primary">
+              <!-- Default panel contents -->
+              <div class="panel-heading">Informações Estatísticas Utentes</div>
+
+
+              <!-- Table Est-Utente -->
+              <table class="table">
+
+                   <tr>
+                    <th>Utente com Mais Receitas:</th>
+                  </tr>
+                  <tr>
+                    <td>
+                        {%for numReUte in numReUte%}
+                        <li>
+{%for numReUte in numReUte.values%}
+                            {{numReUte}}
+{% endfor %}</li>{% endfor %}
+                    </td>
+                  </tr>
+
+
+                  <tr>
+                    <th>Utente com Menos Receitas:</th>
+                  </tr>
+                  <tr>
+                    <td>
+                        {%for numReUteMe in numReUteMe%}
+                        <li>
+{%for numReUteMe in numReUteMe.values%}
+                            {{numReUteMe}}
+{% endfor %}</li>{% endfor %}
+                    </td>
+                  </tr>
+
+              </table>
+ </div>
+          </div> </div>
+
+
+
+
+    <!--   Esta. Medicos  -->
+<div class="row">
+          <div class="col-md-12">
+
+            <div class="panel panel-primary">
+              <!-- Default panel contents -->
+              <div class="panel-heading">Informações Estatísticas Médicos</div>
+
+
+              <!-- Table Est-Utente -->
+              <table class="table">
+
+                    <tr>
+                    <th>Médicos com Mais Receitas:</th>
+                  </tr>
+                  <tr>
+                    <td>
+                        {%for numReMedico in numReMedico%}
+                <li> {%for numReMedico in numReMedico.values%}
+                           {{numReMedico}}
+{% endfor %}</li>{% endfor %}
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <th>Médicos com Menos Receitas:</th>
+                  </tr>
+                  <tr>
+                    <td>
+                        {%for numReMedicMenos in numReMedicMenos%}
+                <li> {%for numReMedicMenos in numReMedicMenos.values%}
+                           {{numReMedicMenos}}
+{% endfor %}</li>{% endfor %}
+                    </td>
+                  </tr>
+
+
+              </table>
+
+ </div>
+          </div> </div>
+
+
+    <!--   Esta. UTentes  -->
+<div class="row">
+          <div class="col-md-12">
+
+            <div class="panel panel-primary">
+              <!-- Default panel contents -->
+              <div class="panel-heading">Informações Estatísticas Medicamentos</div>
+
+
+              <!-- Table Est-Utente -->
+              <table class="table">
+
+
+   <tr><th>Medicamentos Mais Receitados:</th></tr>
+
+                  <tr><td>
+                        {%for numReMedicamento in numReMedicamento%}
+                <li> {%for numReMedicamento in numReMedicamento.values%}{{numReMedicamento}}
+{% endfor %}</li>{% endfor %}
+                    </td>
+                  </tr>
+
+                  <th>Medicamentos Menos Receitados:</th>
+                  </tr>
+
+                  <tr>
+                    <td>
+                        {%for numReMedicaMenos in numReMedicaMenos%}
+                <li> {%for numReMedicaMenos in numReMedicaMenos.values%}
+                           {{numReMedicaMenos}}
+{% endfor %}</li>{% endfor %}
+                    </td>
+                  </tr>
+
+              </table>
+
+ </div>
+          </div> </div>
+
+
+{% endblock %}

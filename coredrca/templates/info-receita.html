@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block conteudo %} 
+{%for receita in receita%}
+      <legend>Receita {{receita.nome}}</legend>
+{% endfor %}
+
+        <div class="row">
+          <div class="col-md-2">
+
+
+
+            <a href="{% url 'receita' %}"><button type="button" class="btn btn-primary glyphicon glyphicon-plus-sign"> Voltar </button></a>
+          </div>
+
+
+        <div class="row">
+          <div class="col-md-12">
+          <br>
+            <div class="panel panel-primary">
+              <!-- Default panel contents -->
+              <div class="panel-heading">Informações Gerais</div>
+
+              <!-- Table -->
+              <table class="table">
+                  <tr>
+                    <th>Nome</th>
+                    <th>Utente</th>
+                    <th>Médico</th>
+                    <th>Medicamentos</th>
+                    <th>quantidade</th>
+                  </tr>
+
+{%for receita in receita%}
+                  <tr>
+                    <td>{{receita.nome}}</td>
+                    <td>{{receita.idUtente}}</td>
+                    <td>{{receita.idMedico}}</td>
+
+                    <td>{%for medicamento in medicamento%}
+                        <li>{{medicamento.nome}}</li>
+                        {% endfor %}
+                    </td>
+                       <td>{%for medicamento in medicamento%}
+                        <li>{{medicamento.quant}}</li>
+                        {% endfor %}
+
+                   {% endfor %}
+              </table>
+            </div>
+
+
+          </div>
+        </div>
+
+
+
+{% endblock %}

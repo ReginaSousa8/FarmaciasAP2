@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block titulo %}Medicamentos{% endblock %}
+
+{% block conteudo %} 
+
+
+      <legend>Medicamentos Registados e Autorizados</legend>
+
+        <div class="row">
+          <div class="col-md-2">
+            <a href="cadastro-infarmed.html"><button type="button" class="btn btn-primary glyphicon glyphicon-plus-sign"> Novo </button></a>
+
+              </div></div>
+
+
+        <div class="row">
+          <div class="col-md-12">
+          <br>
+            <div class="panel panel-primary">
+              <!-- Default panel contents -->
+              <div class="panel-heading">Medicamentos Registados e Autorizados</div>
+
+              <!-- Table -->
+              <table class="table">
+                  <tr><th>Nome</th>
+
+                  </tr>
+                  {%for infarmed in infarmed%}
+                  <tr><td>{{infarmed.nome}}</td>
+                  </tr>
+                  {% endfor %}
+              </table></div></div>
+        </div>
+
+{% endblock %}

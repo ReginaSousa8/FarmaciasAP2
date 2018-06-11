@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block titulo %}Farmacias{% endblock %}
+
+{% block conteudo %} 
+
+
+      <legend>Farmácias</legend>
+
+        <div class="row">
+          <div class="col-md-2">
+            <a href="cadastro-farmacias.html"><button type="button" class="btn btn-primary glyphicon glyphicon-plus-sign"> Nova </button></a>
+          </div>
+
+        </div>
+
+        <div class="row">
+          <div class="col-md-12">
+          <br>
+            <div class="panel panel-primary">
+              <!-- Default panel contents -->
+              <div class="panel-heading">Farmácias</div>
+
+              <!-- Table -->
+              <table class="table">
+                  <tr>
+                    <th>Nome</th>
+                      <th>Adicionar Receita</th>
+                  </tr>
+                  {%for farmacia in farmacias%}
+                  <tr>
+                    <td>{{farmacia.nome}}</td>
+                      <td ><a href="addRec.html" class="glyphicon glyphicon-edit"></a></td>
+
+
+
+                      {% endfor %}
+                  </tr>
+
+              </table>
+            </div>
+
+
+          </div>
+        </div>
+
+{% endblock %}

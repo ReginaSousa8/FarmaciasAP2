@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block titulo %}Utentes{% endblock %}
+
+{% block conteudo %} 
+
+
+      <legend>Utentes</legend>
+
+        <div class="row">
+          <div class="col-md-2">
+            <a href="cadastro-utentes.html"><button type="button" class="btn btn-primary glyphicon glyphicon-plus-sign"> Novo </button></a>
+
+          </div></div>
+
+
+
+
+        <div class="row">
+          <div class="col-md-12">
+          <br>
+            <div class="panel panel-primary">
+              <!-- Default panel contents -->
+              <div class="panel-heading">Utentes Registados</div>
+
+              <!-- Table -->
+              <table class="table">
+                  <tr>
+                    <th>Nome</th>
+                    <th>Morada</th>
+                    <th>Telefone</th>
+                    <th>Médico(s)</th>
+                    <th>Informações</th>
+                  </tr>
+
+                  </tr>
+                  {%for utente in utentes%}
+                  <tr>
+                    <td>{{utente.nome}}</td>
+                    <td>{{utente.morada}}</td>
+                    <td>{{utente.telefone}}</td>
+                    <td>{%for utente in utente.idMedico.values_list%}
+                        <li>{{utente|first}}</li>
+                    {% endfor %} </td>
+
+
+                      <td><a href="{% url 'infoute' nome=utente.nome %}" class="glyphicon glyphicon-list-alt"></a></td>
+                  </tr>
+                  {% endfor %}
+
+              </table>
+            </div>
+          </div>
+        </div>
+
+{% endblock %}
